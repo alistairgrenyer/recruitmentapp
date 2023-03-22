@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="education-field" th:fragment="education-fields">
+  <div class="row mt-1">
+    <div class="col">
+      <input type="text" class="form-control" name="education_name[]" placeholder="Enter degree name">
+    </div>
+    <div class="col">
+      <select class="form-control" name="education_grade[]">
+        <option value="">Select Grade</option>
+        <option value="1st">1st</option>
+        <option value="2:1">2:1</option>
+        <option value="2:2">2:2</option>
+        <option value="3rd">3rd</option>
+      </select>
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" name="education_type[]" placeholder="Enter degree type">
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col">
+      <textarea class="form-control" name="education_comment[]" rows="5" placeholder="Enter course description"></textarea>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col">
+      <input type="date" class="form-control" name="education_start_date[]" placeholder="Enter start date (yyyy-mm-ddThh:mm)">
+    </div>
+    <div class="col">
+      <input type="date" class="form-control" name="education_end_date[]" placeholder="Enter end date (yyyy-mm-ddThh:mm)">
+    </div>
+  </div>
+</div>
+</body>
+</html>

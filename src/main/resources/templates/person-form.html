@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Person</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css">
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}">&nbsp;</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 offset-sm-3">
+            <h1>Add Person</h1>
+            <form th:object="${person}" method="post" action="/person-form" onsubmit="return validateForm()">
+                <div class="form-group" th:classappend="${#fields.hasErrors('name')} ? 'has-error'">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" th:field="*{name}" id="name" placeholder="Enter name" required>
+                    <div class="invalid-feedback">Please enter a name.</div>
+                    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="help-block"></span>
+                </div>
+                <div class="form-group" th:classappend="${#fields.hasErrors('email')} ? 'has-error'">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" th:field="*{email}" id="email" placeholder="Enter email" required>
+                    <div class="invalid-feedback">Please enter a valid email address.</div>
+                    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="help-block"></span>
+                </div>
+                <div class="form-group" th:classappend="${#fields.hasErrors('phone')} ? 'has-error'">
+                    <label for="phone">Phone:</label>
+                    <input type="text" class="form-control" th:field="*{phone}" id="phone" placeholder="Enter phone number" required>
+                    <div class="invalid-feedback">Please enter a phone number.</div>
+                    <span th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="help-block"></span>
+                </div>
+                <div class="form-group" th:classappend="${#fields.hasErrors('address')} ? 'has-error'">
+                    <label for="address">Address:</label>
+                    <input type="text" class="form-control" th:field="*{address}" id="address" placeholder="Enter address" required>
+                    <div class="invalid-feedback">Please enter an address.</div>
+                    <span th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="help-block"></span>
+                </div>
+                <div id="skills-form-group">
+                    <label for="skills">Skills:</label>
+                    <div class="input-group mb-1">
+                        <input type="text" class="form-control" name="skills[]" placeholder="Enter a skill" required>
+                        <button type="button" class="btn btn-sm btn-primary" onclick="addSkillInput()">Add Skill</button>
+                    </div>
+                </div>
+                <div id="education-form-group">
+                    <label for="education">Education:</label>
+                    <div id="education-fields" th:replace="~{fragments/education-fields :: education-fields}">
+                        <div class="education-field"></div>
+                    </div>
+                    <div class="mt-1">
+                        <button type="button" class="btn btn-sm btn-primary" onclick="addEducationField()">Add Education</button>
+                    </div>
+                </div>
+                <div id="experience-form-group">
+                    <label for="experience">Experience:</label>
+                    <div class="row mt-1">
+                        <div class="col">
+                            <input type="text" class="form-control" name="experience_role[]" placeholder="Enter job role">
+                        </div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col">
+                            <textarea class="form-control" name="experience_comment[]" rows="5" placeholder="Enter job description"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col">
+                            <input type="date" class="form-control" name="experience_start_date[]" placeholder="Enter start date (yyyy-mm-ddThh:mm)">
+                        </div>
+                        <div class="col">
+                            <input type="date" class="form-control" name="experience_end_date[]" placeholder="Enter end date (yyyy-mm-ddThh:mm)">
+                        </div>
+                    </div>
+                </div>
+                <div id="submit-form-group" class="form-group mt-3">
+                    <button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div th:if="${message}" class="alert alert-success" role="alert">
+    <p th:text="${message}"></p>
+</div>
+<div th:replace="~{fragments/footer :: footer}">&nbsp;</div>
+
+<!-- Bootstrap JavaScript -->
+<script src="/webjars/bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
+<!-- Form Validation JavaScript -->
+<script th:src="@{/js/person-form-validation.js}"></script>
+<!-- Input Management JavaScript -->
+<script th:src="@{/js/input-management.js}"></script>
+
+</body>
+</html>

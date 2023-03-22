@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Recruitment App Demo</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css" />
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}">&nbsp;</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 offset-sm-3">
+      <h1>Recruitment App Demo</h1>
+      <p>Welcome to the Recruitment App Demo</p>
+      <p>Click the button below to add a new person:</p>
+      <a href="/person-form" class="btn btn-primary">Add Person</a>
+    </div>
+  </div>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}">&nbsp;</div>
+
+<!-- Bootstrap JavaScript -->
+<script src="/webjars/bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
